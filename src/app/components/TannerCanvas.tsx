@@ -1,5 +1,5 @@
 // ============================================================================
-// PlatoCanvas.tsx — "Liquid Plato" Spring-Physics Particle Animation
+// TannerCanvas.tsx — "Liquid Tanner" Spring-Physics Particle Animation
 // ============================================================================
 //
 // OVERVIEW
@@ -41,7 +41,7 @@
 //   4. Save — the canvas should fill with particles within 1–2 seconds.
 //
 // CURRENT WORKING HASH (confirmed working as of build date):
-import imgSrc from '@/assets/e28c320d1044e02ef4a05a7f8e5b01321f031ca8.png';
+import imgSrc from '@/assets/tanner.webp';
 //
 // DEBUGGING TIP:
 //   Open browser DevTools → Console. If you see an image load error, the hash
@@ -79,7 +79,7 @@ const G2 = 'rgba(242,212,106,0.78)';
 const G3 = 'rgba(242,212,106,0.45)'; // available for future HUD elements
 const G4 = 'rgba(242,212,106,0.24)';
 
-export function PlatoCanvas() {
+export function TannerCanvas() {
   const canvasRef    = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -92,35 +92,23 @@ export function PlatoCanvas() {
     const canvas    = canvasRef.current!;
     const container = containerRef.current!;
 
-    // alpha:false gives a small perf boost — we always clear with a black fill
-    // so we never need transparency on the canvas element itself.
+    // alpha:false gives a small perf boost — we always clear with the theme
+    // background color so we never need transparency on the canvas element itself.
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
+    // Use the same background color as the App root div
+    const bgColor = '#030303';
+
     let W = 0, H = 0;
-    let img: HTMLImageElement | null = null;
 
     // Sync canvas pixel dimensions to its CSS layout size.
     // Called once on mount and again via ResizeObserver on every resize.
     // IMPORTANT: canvas.width/height ≠ CSS width/height — you must set both or
     // the drawing context uses a wrong coordinate space.
     const resize = () => {
-      const newW = canvas.offsetWidth;
-      const newH = canvas.offsetHeight;
-      
-      // Update canvas pixel dimensions
-      canvas.width  = newW;
-      canvas.height = newH;
-      
-      // If dimensions actually changed and image is loaded, reinitialize particles
-      if ((newW !== W || newH !== H) && img && img.naturalWidth > 0) {
-        W = newW;
-        H = newH;
-        initParticles(img);
-      } else {
-        W = newW;
-        H = newH;
-      }
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
     };
     resize();
 
@@ -245,13 +233,26 @@ export function PlatoCanvas() {
 
       // ── IMAGE SCALING & POSITIONING ───────────────────────────────────────
       //
-      // SCALE ALGORITHM: Math.max (cover) fills the entire viewport
-      // without gaps. Allows slight crop on edges but ensures the hero
-      // section is completely filled by Plato particles.
+      // WHY Math.min (contain) not Math.max (cover):
+      //   Math.max (cover) scales the image until it fills the viewport,
+      //   cropping anything that overflows. At *1.25 this made the bust far too
+      //   large — the head was clipped at the top, shoulders at the bottom.
+      //
+      //   Math.min (contain) scales the image until the longest axis fits
+      //   within the viewport, keeping the entire bust visible. We then apply
+      //   a *1.15 multiplier to zoom in slightly so the bust fills the hero
+      //   section nicely without leaving large empty margins.
+      //
+      // WHY *1.15:
+      //   At *1.0 the bust sits centred with visible black padding on all sides.
+      //   *1.15 pushes it to fill most of the hero while keeping the full figure
+      //   in frame. Values above ~1.25 start to clip the top of the head.
+      //
       // offX / offY — pixel offset to centre the scaled image in the canvas.
       //   Negative values are intentional and valid — they push the image so
       //   its centre aligns with the canvas centre even if it slightly overflows.
-      const scale = Math.max(W / SW, H / SH); // cover — fill entire viewport
+      const baseScale = Math.min(W / SW, H / SH); // contain
+      const scale     = baseScale * 1.15;          // slight zoom
       const dW   = SW * scale;
       const dH   = SH * scale;
       const offX = (W - dW) / 2;
@@ -306,7 +307,7 @@ export function PlatoCanvas() {
           // To increase total particle count (at performance cost): raise both
           //   values, e.g. 0.30 + (brightness/255) * 0.25
           // To decrease (for low-end devices): lower both values.
-          const keepChance = 0.22 + (brightness / 255) * 0.20;
+          const keepChance = 0.15 + (brightness / 255) * 0.14;
           if (Math.random() > keepChance) continue;
 
           // Record canvas-space position for this particle's home coordinate
@@ -528,8 +529,8 @@ export function PlatoCanvas() {
     const animate = () => {
       animId = requestAnimationFrame(animate);
 
-      // Clear to pure black every frame — the background of the hero section
-      ctx.fillStyle = '#000000';
+      // Clear to theme background color every frame
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, W, H);
 
       if (N === 0) return; // image not loaded yet — keep canvas black
@@ -629,26 +630,25 @@ export function PlatoCanvas() {
     //   figma:asset URLs are same-origin within the Figma Make sandbox.
     //   Adding crossOrigin="anonymous" on a same-origin asset is harmless but
     //   unnecessary — and can cause issues on some CDN configs.
-    const imgElem = new Image();
+    const img = new Image();
     let started = false;
     const start = () => {
       if (started) return;
       started = true;
-      img = imgElem;  // Store image reference for resize to access
-      initParticles(imgElem);
+      initParticles(img);
       animate();
     };
-    imgElem.onload  = start;
-    imgElem.onerror = () => {
+    img.onload  = start;
+    img.onerror = () => {
       // Image failed to load (wrong hash, asset not imported, network error).
       // We still start the animation loop so the canvas isn't left frozen —
       // it will just show a black screen. Check the console for the error.
       // Fix: re-import the Plato bust and update the hash at the top of this file.
       if (!started) { started = true; animate(); }
     };
-    imgElem.src = imgSrc;
+    img.src = imgSrc;
     // Synchronous cache hit — image was already decoded before this effect ran
-    if (imgElem.complete && imgElem.naturalWidth > 0) start();
+    if (img.complete && img.naturalWidth > 0) start();
 
     // ========================================================================
     // EVENT LISTENERS
@@ -738,8 +738,8 @@ export function PlatoCanvas() {
       style={{
         position: 'relative',
         width: '100%',
-        height: '100%',      // fills parent container
-        background: '#000',  // fallback while canvas initialises
+        height: '100%',
+        background: '#030303',  // match App root background
         overflow: 'hidden',  // clip particles that spring outside the viewport
         cursor: 'crosshair', // signals interactivity without using a pointer
       }}

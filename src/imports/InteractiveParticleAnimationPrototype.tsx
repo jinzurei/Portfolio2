@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import imgCanvas from "figma:asset/d0afb7bdd75a7add2a5fd992b846a0de91c40c39.png";
+import imgCanvas from "@/assets/plato.webp";
 type ContainerBackgroundImageProps = {
   additionalClassNames?: string;
 };

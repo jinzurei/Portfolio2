@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import imgCanvas from "figma:asset/675789d608bd83eb1eb6e7230de0d52788697af6.png";
+import imgCanvas from "@/assets/675789d608bd83eb1eb6e7230de0d52788697af6.png";
 type ContainerBackgroundImageProps = {
   additionalClassNames?: string;
 };
