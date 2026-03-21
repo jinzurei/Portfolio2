@@ -102,7 +102,7 @@ const essays: Essay[] = [
     excerpt:
       'A critical argumentative analysis of the Authors Guild v. OpenAI lawsuit. Examines how we should carefully approach AI training ethics, creative labor, and intellectual property through legal, economic, and philosophical lenses. Argues for a path where technology amplifies—rather than displaces—human creativity.',
     tag: 'AI · Analysis',
-    pdf: '/essays/Bytes to books.pdf',
+    pdf: 'essays/Bytes to books.pdf',
     fullContent: [
       'The recent lawsuit against OpenAI has ignited a pivotal conversation about the intersection of artificial intelligence and creative expression. The complaint is not merely a litigation document; rather a mirror reflecting the broader societal and ethical contemplations intertwined with AI\'s flourishing capabilities. This case is a narrative of transformation, a story that will be written in the silent spaces of courtrooms, in the intricate lines of code, and in the profound reflections of every stakeholder in the AI and creative ecosystems.',
       
@@ -127,7 +127,7 @@ const essays: Essay[] = [
     excerpt:
       'I engineered a physics system where gravity responds directly to player input. Hold jump = 1.0x gravity. Release early = 1.7x snappy response. Falling = 1.8x weight. Every action drives the physics in real-time. The frame-rate independence ensures consistency across hardware, but the real innovation is architectural: I put player agency at the center. Physics aren\'t constraints; they\'re expressions of player intent.',
     tag: 'Game Dev · Physics',
-    pdf: '/essays/How I stopped trusting the frame rate and learned to love Δt.pdf',
+    pdf: 'essays/How I stopped trusting the frame rate and learned to love Δt.pdf',
     fullContent: [
       'When you\'re a student developer, it\'s easy to just follow the standard tutorials and accept how things are built. But the more I studied software, the more I realized that every architecture is essentially an argument. I decided it was time to stop relying on pre-packaged solutions and start drafting my own. I wanted to teach myself the absolute fundamentals of digital motion, control, and structure.',
       
@@ -156,7 +156,7 @@ const essays: Essay[] = [
     excerpt:
       'When a portfolio becomes a case study of its own design philosophy, every decision—from rendering strategy to navigation hierarchy to color science—becomes legible proof of process. This is an essay about making the invisible visible: how engineering rigor, design intentionality, and philosophical coherence can be woven into a single site that communicates across disciplines. Read this if you want to understand how to build with measurable care.',
     tag: 'Design · Identity',
-    pdf: '/essays/The Portfolio as Self-Portrait.pdf',
+    pdf: 'essays/The Portfolio as Self-Portrait.pdf',
     fullContent: [
       'A portfolio is never just a collection of projects. It is a working demonstration of how the maker thinks and builds. When I started this site, I treated it exactly like any other system I ship: begin with the user\'s needs, define the information architecture from first principles, then implement with progressive enhancement, semantic markup, and measurable performance targets. The brief I gave myself was straightforward. I wanted to create a digital self-portrait that reveals my process—philosophy as the immutable foundation, full-stack execution, and user-first decisions—without forcing the visitor to read a résumé first. Every choice had to prove that I design and code with the person on the other side of the screen in mind, whether that person is a fellow developer scanning the stack, a hiring manager evaluating fit, or someone simply curious about the thinking behind the work.',
 
@@ -1777,7 +1777,7 @@ function Contact() {
                 Curriculum Vitae
               </p>
               <a
-                href="/essays/Public Facing Resume(Pre-Interview).pdf"
+                href="essays/Public Facing Resume(Pre-Interview).pdf"
                 download="Tanner_Livingston_Resume.pdf"
                 style={{
                   ...MONO,
