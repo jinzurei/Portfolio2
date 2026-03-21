@@ -211,7 +211,7 @@ const domains = [
     description: 'JavaScript, TypeScript, Python, React, FastAPI, Three.js — the whole stack as a unified argument. From responsive layouts to RESTful APIs to GPU-accelerated shaders, every layer reasoned from first principles.',
   },
   {
-    glyph: '◻',
+    glyph: '◆',
     label: 'UI/UX Design',
     sub: 'Interface as Phenomenology',
     description: 'Glassmorphism, particle fields, scroll-driven experiences — design is the structure of experience. From Figma prototypes to production CSS, every affordance is a claim about human attention.',
