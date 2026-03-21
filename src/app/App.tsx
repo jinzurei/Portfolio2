@@ -989,7 +989,7 @@ function DomainsSection() {
         transition: 'opacity 0.9s ease, transform 0.9s ease',
       }}
     >
-      <ShineText as="p" style={{ ...MONO, fontSize: isMobile ? '8px' : '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: isMobile ? '36px' : '56px' }}>
+      <ShineText as="p" style={{ ...MONO, fontSize: isMobile ? '10px' : '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: isMobile ? '36px' : '56px' }}>
         002 / Domains
       </ShineText>
 
@@ -1006,6 +1006,43 @@ function DomainsSection() {
           <DomainCard key={d.label} domain={d} delay={i * 80} isMobile={isMobile} />
         ))}
       </div>
+
+      {/* Mobile scroll arrow */}
+      {isMobile && (
+        <div
+          onClick={() => {
+            const workSection = document.getElementById('work');
+            if (workSection) {
+              workSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '40px',
+            cursor: 'pointer',
+            animation: 'bounce 2s infinite',
+          }}
+        >
+          <div
+            style={{
+              width: '24px',
+              height: '24px',
+              border: `2px solid ${G3}`,
+              borderLeft: 'none',
+              borderTop: 'none',
+              transform: 'rotate(45deg)',
+              transition: 'border-color 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = G1;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = G3;
+            }}
+          />
+        </div>
+      )}
     </section>
   );
 }
@@ -1038,13 +1075,13 @@ function DomainCard({ domain, delay, isMobile }: { domain: typeof domains[0]; de
       >
         {domain.glyph}
       </div>
-      <p style={{ ...MONO, fontSize: isMobile ? '9px' : '11px', letterSpacing: '1.8px', color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase', marginBottom: '6px' }}>
+      <p style={{ ...MONO, fontSize: isMobile ? '11px' : '11px', letterSpacing: '1.8px', color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase', marginBottom: '6px' }}>
         {domain.label}
       </p>
-      <p style={{ ...MONO, fontSize: isMobile ? '7px' : '9px', letterSpacing: '1.5px', color: G3, textTransform: 'uppercase', marginBottom: isMobile ? '12px' : '20px' }}>
+      <p style={{ ...MONO, fontSize: isMobile ? '9px' : '9px', letterSpacing: '1.5px', color: G3, textTransform: 'uppercase', marginBottom: isMobile ? '12px' : '20px' }}>
         {domain.sub}
       </p>
-      <p style={{ ...MONO, fontSize: isMobile ? '10px' : '12px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85 }}>
+      <p style={{ ...MONO, fontSize: isMobile ? '12px' : '12px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85 }}>
         {domain.description}
       </p>
     </div>
@@ -1075,7 +1112,7 @@ function WorkSection() {
           transition: 'opacity 0.9s ease, transform 0.9s ease',
         }}
       >
-        <ShineText as="p" style={{ ...MONO, fontSize: isMobile ? '8px' : '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: isMobile ? '40px' : '56px' }}>
+        <ShineText as="p" style={{ ...MONO, fontSize: isMobile ? '10px' : '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: isMobile ? '40px' : '56px' }}>
           003 / Selected Work
         </ShineText>
 
@@ -1114,17 +1151,17 @@ function ProjectRow({ project, delay, isMobile }: { project: Project; delay: num
         onMouseEnter={(e) => !isMobile && ((e.currentTarget as HTMLElement).style.background = 'rgba(212,175,55,0.03)')}
         onMouseLeave={(e) => !isMobile && ((e.currentTarget as HTMLElement).style.background = 'transparent')}
       >
-        <span style={{ ...MONO, fontSize: isMobile ? '8px' : '10px', color: G4, letterSpacing: '1px' }}>
+        <span style={{ ...MONO, fontSize: isMobile ? '10px' : '10px', color: G4, letterSpacing: '1px' }}>
           {project.id}
         </span>
         <div>
-          <p style={{ ...MONO, fontSize: isMobile ? '8px' : '9px', letterSpacing: '1.8px', color: G3, textTransform: 'uppercase', marginBottom: '4px' }}>
+          <p style={{ ...MONO, fontSize: isMobile ? '10px' : '9px', letterSpacing: '1.8px', color: G3, textTransform: 'uppercase', marginBottom: '4px' }}>
             {project.tag}
           </p>
           <h3
             style={{
               ...SERIF,
-              fontSize: isMobile ? 'clamp(16px, 2vw, 24px)' : 'clamp(20px, 2.5vw, 28px)',
+              fontSize: isMobile ? 'clamp(18px, 2vw, 24px)' : 'clamp(20px, 2.5vw, 28px)',
               fontWeight: 400,
               color: 'rgba(255,255,255,0.88)',
               lineHeight: 1.2,
@@ -1134,7 +1171,7 @@ function ProjectRow({ project, delay, isMobile }: { project: Project; delay: num
           </h3>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', justifySelf: 'end' }}>
-          <span style={{ ...MONO, fontSize: isMobile ? '7px' : '9px', color: G4, letterSpacing: '1px' }}>
+          <span style={{ ...MONO, fontSize: isMobile ? '9px' : '9px', color: G4, letterSpacing: '1px' }}>
             {project.year}
           </span>
           <span
@@ -1171,7 +1208,7 @@ function ProjectRow({ project, delay, isMobile }: { project: Project; delay: num
                 key={t}
                 style={{
                   ...MONO,
-                  fontSize: isMobile ? '8px' : '9px',
+                  fontSize: isMobile ? '10px' : '9px',
                   letterSpacing: isMobile ? '0.8px' : '1.2px',
                   color: G3,
                   textTransform: 'uppercase',
@@ -1193,7 +1230,7 @@ function ProjectRow({ project, delay, isMobile }: { project: Project; delay: num
                   rel="noopener noreferrer"
                   style={{
                     ...MONO,
-                    fontSize: isMobile ? '8px' : '9px',
+                    fontSize: isMobile ? '10px' : '9px',
                     letterSpacing: isMobile ? '1px' : '1.5px',
                     color: G3,
                     textTransform: 'uppercase',
@@ -1228,7 +1265,7 @@ function ProjectRow({ project, delay, isMobile }: { project: Project; delay: num
                   rel="noopener noreferrer"
                   style={{
                     ...MONO,
-                    fontSize: isMobile ? '8px' : '9px',
+                    fontSize: isMobile ? '10px' : '9px',
                     letterSpacing: isMobile ? '1px' : '1.5px',
                     color: G3,
                     textTransform: 'uppercase',
@@ -1569,7 +1606,7 @@ function WritingSection() {
             transition: 'opacity 0.9s ease, transform 0.9s ease',
           }}
         >
-          <ShineText as="p" style={{ ...MONO, fontSize: '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: '56px' }}>
+          <ShineText as="p" style={{ ...MONO, fontSize: '10px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: '56px' }}>
             004 / Writing
           </ShineText>
 
@@ -1696,7 +1733,7 @@ function Contact() {
           transition: 'opacity 0.9s ease, transform 0.9s ease',
         }}
       >
-        <ShineText as="p" style={{ ...MONO, fontSize: '9px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: '56px' }}>
+        <ShineText as="p" style={{ ...MONO, fontSize: '10px', letterSpacing: '2.5px', color: G4, textTransform: 'uppercase', marginBottom: '56px' }}>
           005 / Contact
         </ShineText>
 
@@ -1836,13 +1873,13 @@ function Contact() {
             gap: '16px',
           }}
         >
-          <p style={{ ...MONO, fontSize: '9px', letterSpacing: '2px', color: G1, textTransform: 'uppercase' }}>
+          <p style={{ ...MONO, fontSize: '10px', letterSpacing: '2px', color: G1, textTransform: 'uppercase' }}>
             Tanner Livingston © 2025
           </p>
-          <p style={{ ...MONO, fontSize: '9px', letterSpacing: '1.5px', color: G1, textTransform: 'uppercase' }}>
+          <p style={{ ...MONO, fontSize: '10px', letterSpacing: '1.5px', color: G1, textTransform: 'uppercase' }}>
             Philosophy · Code · Design · Writing · Games
           </p>
-          <p style={{ ...SERIF, fontSize: '14px', fontStyle: 'italic', color: G1, letterSpacing: '0.5px', fontWeight: 500 }}>
+          <p style={{ ...SERIF, fontSize: '16px', fontStyle: 'italic', color: G1, letterSpacing: '0.5px', fontWeight: 500 }}>
             "The unexamined code is not worth shipping."
           </p>
         </div>
