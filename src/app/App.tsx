@@ -570,6 +570,56 @@ function HeroOverlay() {
           {isMobile ? 'PHILOSOPHER · DEVELOPER · DESIGNER' : 'PHILOSOPHER\u00A0·\u00A0 DEVELOPER\u00A0·\u00A0 DESIGNER'}
         </p>
       </div>
+
+      {isMobile && (
+        <button
+          type="button"
+          aria-label="Scroll down"
+          onClick={() => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            bottom: '28px',
+            width: '112px',
+            height: '44px',
+            transform: 'translateX(-50%)',
+            display: 'grid',
+            placeItems: 'center',
+            background: 'transparent',
+            border: 'none',
+            padding: 0,
+            margin: 0,
+            cursor: 'pointer',
+            pointerEvents: 'auto',
+          }}
+        >
+          <svg
+            aria-hidden="true"
+            width="92"
+            height="24"
+            viewBox="0 0 92 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              display: 'block',
+              animation: 'bounce 2s infinite',
+            }}
+          >
+            <path
+              d="M4 6L46 20L88 6"
+              stroke={G1}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
@@ -1006,43 +1056,6 @@ function DomainsSection() {
           <DomainCard key={d.label} domain={d} delay={i * 80} isMobile={isMobile} />
         ))}
       </div>
-
-      {/* Mobile scroll arrow */}
-      {isMobile && (
-        <div
-          onClick={() => {
-            const workSection = document.getElementById('work');
-            if (workSection) {
-              workSection.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '40px',
-            cursor: 'pointer',
-            animation: 'bounce 2s infinite',
-          }}
-        >
-          <div
-            style={{
-              width: '24px',
-              height: '24px',
-              border: `2px solid ${G3}`,
-              borderLeft: 'none',
-              borderTop: 'none',
-              transform: 'rotate(45deg)',
-              transition: 'border-color 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = G1;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = G3;
-            }}
-          />
-        </div>
-      )}
     </section>
   );
 }
