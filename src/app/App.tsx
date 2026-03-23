@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: '01',
     tag: 'AI Engineering',
     title: 'Ignis',
-    year: '2025',
+    year: '2026',
     description:
       'A sophisticated local AI assistant featuring advanced memory systems, personality evolution, and cognitive architectures. Implements local LLM inference using llama.cpp, multi-layered memory with episodic and semantic components, and a dynamic personality engine that adapts through conversation. Includes web interface, RESTful API endpoints, and comprehensive testing suite.',
     tech: ['Python', 'FastAPI', 'llama.cpp', 'ChromaDB', 'JavaScript', 'HTML5/CSS3'],
@@ -43,7 +43,7 @@ const projects: Project[] = [
     id: '02',
     tag: 'Game Engine',
     title: 'I Am The Fool',
-    year: '2025',
+    year: '2026',
     description:
       'A modular 2D platformer engine built from scratch in Python and Pygame, featuring custom physics, infinite procedural levels, and advanced game architecture. Implements symplectic Euler integration for frame-rate independent physics, variable-height jumping with easing curves, and a sophisticated camera system with parallax scrolling.',
     tech: ['Python', 'Pygame', 'Git', 'PowerShell'],
@@ -53,7 +53,7 @@ const projects: Project[] = [
     id: '03',
     tag: 'Creative Portfolio',
     title: 'Portfolio (Legacy)',
-    year: '2025',
+    year: '2026',
     description:
       'A high-performance creative showcase built 100% in vanilla JavaScript + Three.js. Features original real-time GLSL shaders — topographic contours with 3D simplex noise + RGB glitch bursts — glassmorphism UI with backdrop blur, 3D flip cards, animated starfield, 3D Earth with ASCII overlay, and a custom WebGL scrollbar. Optimized for smooth performance with graceful degradation.',
     tech: ['Three.js', 'WebGL/GLSL', 'JavaScript ES6+', 'CSS3 Grid', 'HTML5'],
@@ -64,7 +64,7 @@ const projects: Project[] = [
     id: '04',
     tag: 'Client Work',
     title: 'songim.dev',
-    year: '2025',
+    year: '2026',
     description:
       'A sleek, immersive single-page portfolio for Song Im — a multidisciplinary creative in game development and digital media. Built as a scroll-driven experience with a dark cosmic aesthetic, animated particle/dot-field backgrounds, smooth section anchoring, and Markdown-driven content. Designed from a Figma prototype and deployed via GitHub Pages.',
     tech: ['TypeScript', 'Vite', 'React', 'CSS/PostCSS', 'Figma', 'Markdown'],
@@ -1887,7 +1887,7 @@ function Contact() {
           }}
         >
           <p style={{ ...MONO, fontSize: '10px', letterSpacing: '2px', color: G1, textTransform: 'uppercase' }}>
-            Tanner Livingston © 2025
+            Tanner Livingston © 2026
           </p>
           <p style={{ ...MONO, fontSize: '10px', letterSpacing: '1.5px', color: G1, textTransform: 'uppercase' }}>
             Philosophy · Code · Design · Writing · Games
